@@ -145,3 +145,18 @@ for k in sorted(k_to_accuracies):
 
 ---
 
+## SVM
+
+多分类线性 SVM
+
+<img src="https://latex.codecogs.com/gif.latex?y&space;=&space;Wx" title="y = Wx" />
+
+使用 hinge loss，margin 为 1：
+
+<img src="https://latex.codecogs.com/gif.latex?L&space;=&space;\frac{1}{N}&space;\sum&space;\limits_{i}&space;L_i&space;&plus;&space;\lambda&space;\sum&space;\limits_{k,l}&space;w_{kl}^2" title="L = \frac{1}{N} \sum \limits_{i} L_i + \lambda \sum \limits_{k,l} w_{kl}^2" />
+
+<img src="https://latex.codecogs.com/gif.latex?L_i&space;=&space;\sum&space;\limits_{j&space;\ne&space;i}&space;max(\hat&space;y_j&space;-&space;y_i&space;&plus;&space;1,&space;0)" title="L_i = \sum \limits_{j \ne i} max(\hat y_j - y_i + 1, 0)" />
+
+注意只有错误的分类(j != i)才会产生 loss。
+
+
