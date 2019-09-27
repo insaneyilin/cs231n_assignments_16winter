@@ -4,6 +4,11 @@ http://cs231n.github.io/assignments2016/assignment1/
 
 ## kNN 分类器
 
+kNN 分类器步骤：
+
+1. 训练：不需要训练，简单地保存所有训练数据；
+2. 测试：测试样本分别和所有训练样本计算距离，选取 k 个最近的训练样本的 label，投票选出预测值。
+
 ### 样本距离计算
 
 第一个练习是计算两两样本之间的 L2 距离，逐步实现两层循环、一层循环、不用循环的方法：
@@ -16,8 +21,12 @@ http://cs231n.github.io/assignments2016/assignment1/
     for i in xrange(num_test):
       for j in xrange(num_train):
         dists[i, j] = np.sqrt(np.sum((X[i] - self.X_train[j]) ** 2))
+        # dists[i, j] = np.linalg.norm((X[i] - self.X_train[j]))
     return dists
 ```
+
+也可以用 `np.linalg.norm` 直接计算欧氏距离。
+
 
 ```python
   def compute_distances_one_loop(self, X):
@@ -85,6 +94,9 @@ dists = np.sqrt(x2 + y2 - 2*xy) # shape is (m, n)
     return y_pred
 
 ```
+
+- `np.argsort()` 返回排序后的下标 list
+- `np.bincount()` 统计数组中元素出现的频数，结合 `np.argmax()` 实现投票
 
 ### 交叉验证（确定 knn 的超参数 k）
 
